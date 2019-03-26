@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="../static/css/index.css" th:href="@{/css/index.css}" rel="stylesheet"/>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Stream</th>
+        <th>Action</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${interns.isEmpty()}">
+        <td colspan="3">No Interns</td>
+    </tr>
+    <tr th:each="intern : ${interns}">
+        <td><span th:text="${intern.id}">ID</span></td>
+        <td><span th:text="${intern.name}">Name</span></td>
+        <td><span th:text="${intern.age}">Age</span></td>
+        <td><span th:text="${intern.stream}">Stream</span></td>
+        <td><a th:href="@{'/delete/'+${intern.id}}"class="btn btn-danger btn-sm mb-3">Delete</a>
+        <a th:href="@{/update(intern_id=${intern.id})}" class="btn btn-success btn-sm mb-3">Update</a></td>
+    </tr>
+    </tbody>
+</table>
+    <!-- Add a button -->
+    <a th:href="@{/newForm}"
+       class="btn btn-primary btn-sm mb-3">
+        Add Intern
+    </a>
+</div>
+</body>
+</html>
